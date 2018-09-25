@@ -2,9 +2,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>购物车实例</title>
+
+    <script src="../01/vue.min.js"></script>
+    <link rel="stylesheet" href="../01/bootstrap.min.css">
 </head>
 <body>
-
+<div id="app" class="container">
+    <div class="page-header h2">购物车实例</div>
+    <div class="row" style="margin-bottom: 20px">
+        <div class="col-md-6 col-md-offset-3">
+            <input type="text" class="form-control" placeholder="模糊搜索">
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-bordered table-hover table-striped">
+            <tr>
+                <td>书名</td>
+                <td>单价</td>
+                <td>数量</td>
+                <td>总价</td>
+                <td>操作</td>
+            </tr>
+            <tr v-for="book in books">
+                <td>{{book.bookname}}</td>
+                <td>{{book.price}}</td>
+                <td>
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default">-</button>
+                        </div>
+                        <input type="text" v-model="book.count" class="form-control">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default">+</button>
+                        </div>
+                    </div>
+                </td>
+                <td>{{book.price*book.count}}</td>
+                <td>
+                    <button class="btn btn-danger">删除</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script>
+    let vm=new Vue({
+        el:"#app",
+        data:{
+            books:[
+                {bookname:"php",price:10,count:1},
+                {bookname:"python",price:20,count:1},
+                {bookname:"go",price:30,count:1},
+                {bookname:"java",price:40,count:1},
+                {bookname:"react",price:50,count:1},
+                {bookname:"jquery",price:60,count:1},
+                {bookname:"vue",price:70,count:1},
+                {bookname:"django",price:80,count:1},
+            ]
+        }
+    })
+</script>
 </body>
 </html>
